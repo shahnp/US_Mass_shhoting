@@ -1,0 +1,1732 @@
+---
+title: "Mass Shooting in US"
+author: "Pankaj Shah"
+date: "4 Jan 2019"
+output:
+  html_document:
+    number_sections: true
+    toc: true
+    toc_float: true
+    toc_depth: 4
+    fig_width: 8
+    fig_height: 6.0
+    theme: yeti
+    highlight: textmate
+    code_folding: hide
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    max-width: 800px;
+    margin: auto;
+    line-height: 20px;
+    warning: no
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r}
+devtools::install_github("rstudio/rsconnect")1
+```
+
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo=FALSE, error=FALSE)
+```
+
+# Introduction:
+A recent study published by the Harvard Injury Control Research Center shows that the frequency of mass shooting has increased over time. Some of the deadliest mass shootings in the U.S. happen last year February 2018 including the [Parkland high school](https://en.wikipedia.org/wiki/Stoneman_Douglas_High_School_shooting) shooting and the massacre at the [Tree of Life synagogue in Pittsburgh](https://en.wikipedia.org/wiki/Pittsburgh_synagogue_shooting) that occured in October 27, 2018 which prompted widespread national horror. But the death toll is not irrelevant to shooters’ motives. Criminologists who’ve studied them believe that body counts play a role in their calculations.But Mass shooting say a lot about the soceiety, country and how well we are making progress in overcoming loss of life.
+
+# Purpose: Datasets
+
+**Why I picked these datasets.**<br>
+
+The US has witnessed 398 mass shootings in last 50 years that resulted in 1996 official deaths and 2488 official injured.I stumble upon these datasets while uploading my other two projects one of which Bostn Crime [Boston Crime](https://rpubs.com/shah_np/453629) and another one is [Cambridge Crime](https://www.kaggle.com/pankajautomatic/cambridge-eda) Analysis.I thought of implementing different tools and show different prespective than I used for those two projects. The anlaysis and the approach taken in this project is quite in different direction than those two. I hope you will see the difference and love the work. I have more focused on converying my story through graphs and visualisation than Exploratory analysis in this project.
+
+## Information
+
+**How has the number of death folded over the years?**
+
+Before I would take you the analysis and journey of US mass Shootings. Lets take a moment to realise how each of the incidents have folded over the last 50 years. 
+
+When we break the Mass shootings over the decades. 
+- In the 1980s, there were 30 mass shootings, with 173 deaths. 
+- In the 1990s, the number was increased to 37, with some 200 fatalities and another 186 wounded.
+In the 2000s , the number were 33 such shootings, even as they became deadlier -- 227 deaths.
+
+Over the last few years has contributed a lot in increased number of Mass Shootings.The terrible numbers which keeps on growing with each mass shooting.The city, state, places have changed, but the numbers have gone more wider than heading any other directions, but one thing which stands out from each and everything is the choice of weapon which remains the same. In the United States, people who would think of commiting such a henious crime always prefer guns, not with knives and or any alternative form. So is it fair to say that Mass Murders that occurs quite often now a days has something to do with guns.
+
+**Breaking down the crime: shooter**
+
+When I  looks at the 158 shootings in which four or more people were killed by a lone shooter (two shooters in a few cases).What I saw is that the people who were killed came from nearly every imaginable race, religion and socioeconomic background. Their ages range from the unborn to the elderly; 186 were children and teenagers. In addition, thousands of survivors were left with devastating injuries, shattered families and psychological scars.In some of the Mass Shootings,shooters often carried more than one weapon; one was found with 24. At least 175 of mass shooters’ weapons were obtained legally and 52 were obtained illegally. It’s unclear how 78 weapons were acquired till now to general public. Our question was not how these criminals get guns but what potential damage they can cause to society once they have such weapon.
+
+## Description:Part I
+
+Here is a list of the deadliest single day mass shootings in US history from 1949 to the present.I have only included the descriptions which involves atleast 10 death. I have included all these description in decreasing body count including the Parkland and Tree of Life synagogue in Pittsburgh which occured recently. 
+
+**Click on each link to explore more**
+
+**[58 killed - October 1, 2017](https://en.wikipedia.org/wiki/2017_Las_Vegas_shooting)** - In Las Vegas, 64-year-old Stephen Paddock of Mesquite, Nevada, sprays gunfire on a crowd of 22,000 concertgoers from the 32nd floor of the Mandalay Bay Resort and Casino, killing 58 people and injuring almost 500. Witnesses say the gunshots last between 10 and 15 minutes. Officers breach Paddock's hotel room to find him dead. Authorities believe Paddock killed himself and that he acted alone.
+
+**[49 killed - June 12, 2016](https://en.wikipedia.org/wiki/Orlando_nightclub_shooting)** - Omar Saddiqui Mateen, 29, opens fire inside Pulse, a gay nightclub, in Orlando. At least 49 people are killed and more than 50 are injured. Police shoot and kill Mateen during an operation to free hostages officials say he was holding at the club.
+
+**[32 killed - April 16, 2007](https://en.wikipedia.org/wiki/Virginia_Tech_shooting)** - Virginia Tech in Blacksburg, Virginia. A gunman, 23-year-old student Seung-Hui Cho, goes on a shooting spree killing 32 people in two locations and wounding an undetermined number of others on campus. The shooter dies by suicide.
+
+**[27 killed - December 14, 2012](https://en.wikipedia.org/wiki/Sandy_Hook_Elementary_School_shooting)**- Sandy Hook Elementary School - Newtown, Connecticut. Adam Lanza, 20, guns down 20 children, ages six and seven, and six adults, school staff and faculty, before turning the gun on himself. Investigating police later find Nancy Lanza, Adam's mother, dead from a gunshot wound.
+
+**[25 and an unborn child killed - November 5, 2017](https://en.wikipedia.org/wiki/Sutherland_Springs_church_shooting)** - A gunman opens fire on a small church in Sutherland Springs, Texas, killing 25 people and an unborn child and wounding 20 others. The shooter, identified by two law enforcement sources as Devin Patrick Kelley, is found dead after a brief chase, but it's unclear if it was self-inflicted.
+
+**[23 killed - October 16,1991](https://en.wikipedia.org/wiki/Luby%27s_shooting)**- In Killeen, Texas, 35-year-old George Hennard crashes his pickup truck through the wall of a Luby's Cafeteria. After exiting the truck, Hennard shoots and kills 23 people. He dies by suicide.
+
+**[21 killed - July 18,1984](https://en.wikipedia.org/wiki/San_Ysidro_McDonald%27s_massacre)** - In San Ysidro, California, 41-year-old James Huberty, armed with a long-barreled Uzi, a pump-action shotgun and a handgun, shoots and kills 21 adults and children at a local McDonald's. A police sharpshooter kills Huberty one hour after the rampage begins.
+
+**[18 killed - August 1,1966](https://en.wikipedia.org/wiki/University_of_Texas_tower_shooting)** - In Austin, Texas, Charles Joseph Whitman, a former US Marine, kills 16 and wounds at least 30 at the University of Texas while shooting from a tower. Police officers Ramiro Martinez and Houston McCoy shoot and kill Whitman in the tower. Whitman had also killed his mother and wife earlier in the day.
+
+**[17 killed - February 14,2018](https://en.wikipedia.org/wiki/Stoneman_Douglas_High_School_shooting)** - A former student unleashes a hail of gunfire at Marjory Stoneman Douglas High School in Parkland, Florida, killing at least 17 adults and children. Nikolas Cruz, 19, has been charged with 17 counts of premeditated murder.
+
+**[14 killed - December 2, 2015](https://en.wikipedia.org/wiki/2015_San_Bernardino_attack)** - Married couple Syed Rizwan Farook and Tashfeen Malik open fire on an employee gathering taking place at Inland Regional Center in San Bernardino, California, killing 14 people.
+14 killed - August 20, 1986 - In Edmond, Oklahoma, Patrick Henry Sherrill, a part-time mail carrier armed with three handguns, kills 14 postal workers in 10 minutes and then takes his own life.
+
+**[13 and an unborn child killed](https://en.wikipedia.org/wiki/2009_Fort_Hood_shooting)**- November 5, 2009 - Maj. Nidal Malik Hasan kills 13 people and one unborn child and injures 32 at Fort Hood, Texas, during a shooting rampage. He is convicted and sentenced to death.
+
+**[13 killed - April 3, 2009](https://en.wikipedia.org/wiki/Binghamton_shootings)** - In Binghamton, New York, Jiverly Wong kills 13 people and injures four during a shooting at an immigrant community center. He then kills himself.
+13 killed - April 20, 1999 - Columbine High School - Littleton, Colorado. Eighteen-year-old Eric Harris and 17-year-old Dylan Klebold kill 12 fellow students and one teacher before dying by suicide in the school library.
+
+**[13 killed - February 18, 1983](https://en.wikipedia.org/wiki/Wah_Mee_massacre)** - Three men enter the Wah Mee gambling and social club in Seattle, rob the 14 occupants and then shoot each in the head, killing 13. Two of the men, Kwan Fai Mak and Benjamin Ng, are convicted of murder in August 1983. Both are serving life in prison. The third, Wai-Chiu "Tony" Ng, after years on the run in Canada, is eventually convicted of first-degree robbery and second-degree assault. He is deported to Hong Kong in 2014.
+
+**[13 killed - September 25, 1982](https://en.wikipedia.org/wiki/George_Banks)** - In Wilkes-Barre, Pennsylvania, 40-year-old prison guard George Banks kills 13 people including five of his own children. In September 2011, the Pennsylvania Supreme Court overturns his death sentence, stating that Banks is mentally incompetent.
+
+**[13 killed - September 5, 1949](https://en.wikipedia.org/wiki/Howard_Unruh)**- In Camden, New Jersey, 28-year-old Howard Unruh, a veteran of World War II, shoots and kills 13 people as he walks down Camden's 32nd Street using a German-crafted Luger pistol. He is found insane and is committed to a state mental institution. He dies at the age of 88.
+
+**[12 killed - November 7, 2018](https://en.wikipedia.org/wiki/Thousand_Oaks_shooting)** - Twelve people are killed in a shooting at the Borderline Bar & Grill in Thousand Oaks, California. Officials say the gunman, Ian David Long, shot an unarmed security guard outside the bar, then went in and continued shooting, injuring other security workers, employees and patrons.
+
+**[12 killed - September 16, 2013](https://en.wikipedia.org/wiki/Washington_Navy_Yard_shooting)** - Shots are fired inside the Washington Navy Yard, killing 12. The shooter, identified as Aaron Alexis, 34, is also killed.
+
+**[12 killed - July 20, 2012](https://en.wikipedia.org/wiki/2012_Aurora_shooting)** - Twelve people are killed, and 58 are wounded in a shooting at a screening of the new Batman film in Aurora, Colorado. James E. Holmes, 24, dressed head-to-toe in protective tactical gear, sets off two devices of some kind before spraying the theater with bullets from an AR-15 rifle, a 12-gauge shotgun and at least one of two .40-caliber handguns police recovered at the scene. On July 16, 2015, Holmes is found guilty on all 165 counts against him, 24 first-degree murder, 140 attempted murder and one count of possession or control of an explosive or incendiary device. He is sentenced to life in prison without parole.
+
+**[12 killed - July 29, 1999](https://en.wikipedia.org/wiki/Mark_O._Barton)** - In Atlanta, 44-year-old Mark Barton kills his wife and two children at his home. He then opens fire in two different brokerage houses, killing nine people and wounding 12. He later kills himself.
+
+**[11 killed - October 27, 2018](https://en.wikipedia.org/wiki/Pittsburgh_synagogue_shooting)** - Eleven people are killed in a shooting at the Tree of Life synagogue in the Squirrel Hill neighborhood of Pittsburgh, PA. 46-year-old Robert Bowers surrendered to authorities on the third floor of the building and is now facing federal charges, including hate crimes. Bowers told told a SWAT officer while receiving medical care that he wanted all Jews to die and that Jews "were committing genocide to his people," a criminal complaint filed in Allegheny County says.
+
+**[10 Killed - May 18, 2018](https://en.wikipedia.org/wiki/Santa_Fe_High_School_shooting)** - Dimitrios Pagourtzis, 17, allegedly walks into an art class and begins firing, killing 8 students and 2 teachers at Santa Fe High School in Santa Fe, Texas. Pagourtzis is arrested and charged with capital murder and aggravated assault of a public servant.
+
+**[10 killed - March 10, 2009](https://en.wikipedia.org/wiki/Geneva_County_massacre)** - In Alabama, Michael McLendon of Kinston, kills 10 and himself. The dead include his mother, grandparents, aunt and uncle.
+
+## Question: Analysis
+
+**What were the choice of weapon during all these mass shootings?**
+
+**Semiautomatic rifles** have been used in some of the country’s deadliest shootings, such as those in Newtown, Orlando, San Bernardino and Las Vegas. The AR-15, a lightweight, customizable version of the military’s M16, soared in popularity after a 10-year federal ban on assault weapons expired in 2004. Some of the Las Vegas shooter’s guns had been fitted with legal devices called “bump-fire stocks,” which allow semiautomatic rifles to fire as quickly as automatic ones.
+
+The gunman who killed 32 students and teachers at Virginia Tech in 2007 used a 9mm semiautomatic Glock 19 (and a .22-caliber Walther P22, another popular caliber).
+
+**Does all these Mass Shooters were tied with some sort of crimes?**
+
+Some of these mass shooters were known to have violent tendencies or criminal pasts. Others seemed largely fine until they attacked. All but 3 were male. The vast majority were between the ages of 20 and 49. More than half — 90 of them — died at or near the scene of the shooting, often by killing themselves.
+
+**Which Gender is more prone to commit such crime?**
+
+Between 1982 and November 19, 2018, 3 mass shootings were initiated by solo-female shooters. In contrast, 103 mass shootings were carried out by male shooters. The mass shooting in San Bernardino on December 2nd, 2016 was the only instance in which both a male and female were the shooters.
+
+**Males** 
+Males are dominant in such a henious crime.However, a look at mass shootings in the United States by gender shows a great majority of mass shootings are carried out by men.  So far there were 103 Males involved in Mass shootings.
+
+**Female** 
+- The most recent female shooter was a Pakistani mother who helped kill 14 partygoers at her husband’s workplace in San Bernardino, Calif., in 2015.  3 Females have contributed till date.
+
+**Male/Female**
+In one of the Mass shooting both Male and Female were involved.
+
+**Ex-Marine**
+- The others are an ex-postal worker who killed a former neighbor and six employees at a Goleta, Calif., mail-processing facility in 2006; and a former tribal council chairwoman who killed her brother and three others during an eviction hearing in Alturas, Calif., in 2014.
+
+**Middle-schoolers**
+Andrew Golden, 11, and Mitchell Johnson, 13, pulled a fire alarm to flush students and teachers out of their Jonesboro, Ark., middle school in 1998, and began shooting from a wooded perch nearby. They killed four girls and a teacher and wounded 10 others.
+
+In the 50 years before the Texas tower shooting, there were just 25 public mass shootings in which four or more people were killed. Since then, the number has risen dramatically, and many of the deadliest shootings have occurred within the past few years.
+
+**What are the most frequemt place of such Crime?**
+
+Shootings in schools and houses of worship tend to stand out in our minds, but they make up a relatively small portion of public mass shootings. More common are those in offices and retail establishments such as restaurants and stores. California has had more of these public mass shootings than any other state, with 25.
+
+**Does Race play any role in Mass Shootings?**
+
+Between 1982 and November 2018, 60 out of 107 mass shootings were initiated by White shooters. The Las Vegas strip massacre in 2017 had the highest number of victims between 1982 and 2018, with 58 people killed, and over 500 injured.
+
+**Does Gender play any role in Mass Shootings?**
+
+Most men, of course, go through life without killing anyone. And motives for crime are very individual. Not all women and men who kill do so for the same reasons. Each case is seems unique which I found out after going through much of articles published in National dailies. 
+
+`After a little history about the Mass shootings lets dive into our datasets to see whats there for us.`
+
+# Data Preprocessing {.tabset .tabset-fade .tabset-pills}
+
+Load the data from [source](https://www.kaggle.com/zusmani/us-mass-shootings-last-50-years). In the datasets there are 5 different version uploaded by various users. After looking through each datasets in detail. I prefered to pick the 5th Version of datasets which is more relevant for analysis. Version 1 is limited with only 13 variables whereas rest of the datasets have 21 variables to begin with. Three more recent mass shootings have been added including the Texas Church shooting of November 5, 2017 in version 5.
+
+## Library
+
+Lets import all the necessary libraries which are needed for the data cleaning as well as data vizualizations.
+```{r, message=FALSE, warning=FALSE}
+library(data.table) # A faster way to handle data frames in R,Creating data frames
+library(readr) # read_csv function file I/O
+library(dplyr) # Data Manipulation
+library(janitor) # perfectly format data.frame column
+library(tidyr) # tidy manipulation
+library(tidyverse) #for data cleaning
+library(stringr) # to manipulate character type data variables
+library(reshape2) # easy to transform data between wide and long formats.
+library(lubridate) # For easy handling dates
+library(tm) # Text Minning
+library(wordcloud) # Form Wordcloud
+library(SnowballC) # goes well with wordcloud
+library(ggthemes) # For prettier ggplot2 plot aesthetics and acessibility for color-blind palettes
+library(plotly) # for interactive visualizations
+library(ggplot2) # Data visualization
+library(knitr) # For pretty tables
+library(scales) # To add more ticks and facilitate plot interpretation
+library(lattice) #  powerful and elegant data visualization 
+library(chron) # Provides chronological objects which can handle dates and times.
+library(cowplot)  # Subplots
+library(maptools) # Tools for Handling Spatial Objects
+library("DataExplorer") # Exploring the data
+library("leaflet") #For Maps
+library(maps) # for map visualization
+library(kableExtra)
+library(DT) # interactive data table
+library(gtable) # construct and manipulate layouts containing graphical elements.
+library(grid) # rewrite of the graphics layout capabilities, plus some support for interaction.
+library(formattable) #Table
+library(ggrepel) # ggrepel provides geoms for ggplot2 to repel overlapping text labels
+library(forcats) # Categorical Data Wrangling
+```
+
+## load Data
+```{r, message=FALSE, warning=FALSE}
+df_1 <- read_csv("~/Desktop/C/R_Pubs/Mass_shooting/us-mass-shootings-last-50-years/Mass Shootings Dataset Ver 5.csv")
+```
+
+## Clean columns.
+
+First step is to clean the variable name so that it is easy to work with.
+```{r}
+df_1 <- clean_names(df_1)
+```
+
+# Data Modelling {.tabset .tabset-fade .tabset-pills}
+ 
+
+The dataset contains information about `r nrow(df_1$s_number)` Mass shooting events, each identified by a unique **Serial No**. The dataset contains Serial No, Title, Location, Date, Summary, Fatalities, Injured, Total Victims, Mental Health Issue, Race, Gender, and Lat-Long information.All the variables are quite self explanatory.
+
+## Head 
+
+Scroll down the box to see recent shootings.
+```{r}
+kable(head(df_1,5)) %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed","responsive", full_width = F, position = "left", font_size = 7)) %>%
+  column_spec(5, width = "30em", background = "lightcyan") %>% 
+  row_spec(3:5, bold = T, color = "white", background = "cyan") %>% 
+  scroll_box(width = "800px", height = "200px")
+```
+
+**Data Questions asked by Data Provider?**
+
+What were the questions that was proposed at the time of introducing these course.These question were directly taken from Kaggle websites. 
+
+ * How many people got killed and injured per year?
+ * Visualize mass shootings on US map
+ * Is there any correlation between shooter and his/her race, gender
+ * Any correlation with calendar dates? Do we have more deadly days, weeks or months on average
+ * What cities and states are more prone to such attacks
+ * Can you find and combine any other external dataset to enrich the analysis
+ * Any other pattern you see that can help in prediction, crowd safety or in-depth analysis of the event
+ * How many shooters have some kind of mental health problem? 
+ 
+There are some questions which can be answered with these data but there are some questions which need much more deep understanding from all the field even before we address those questions. Future prevention needs lots of attention from different fields and definetly making mass shooting guns harder to purchase can be option but its all upto the society and members of congress to address those concerns.
+ 
+`Lets extract some information about our datasets. Let's look at some missing data`
+
+```{r}
+# Writing function to get info about our datasets
+df_info <- function(x) {
+  data  <- as.character(substitute(x))  ##data frame name
+  size <- format(object.size(x), units="Mb")  ##size of data frame in Mb
+  
+  plot_missing(data.frame(x)) # Vizualization of Missing Data.
+  
+  ##column information
+  column.info <- data.frame( column        = names(sapply(x, class)),
+                             #class         = sapply(x, class),
+                             unique.values = sapply(x, function(y) length(unique(y))),
+                             missing.count = colSums(is.na(x)),
+                             missing.pct   = round(colSums(is.na(x)) / nrow(x) * 100, 2))
+                            
+  row.names(column.info) <- 1:nrow(column.info)
+  list(data.frame     = data.frame(name=data, size=size),
+       dimensions     = data.frame(rows=nrow(x), columns=ncol(x)),
+       column.details = column.info)
+}
+
+# Information about the datasets
+df_info(df_1)
+```
+ 
+Our datasets is 0.2Mb in size. Most of the missing values are coming fron the shooters employement history. Data is not avaialable where shooter was employed. 
+
+```{r, include= FALSE}
+# Missing data in one table
+sapply(df_1, function(x) sum(is.na(x)))
+```
+
+Lets see if we have any duplicate data in our datasets. There are 323 unique serial number which corresponds to each unique incidents.
+
+## Duplicate data
+```{r}
+# Sanity check
+# length(unique(df_1$s_number))
+duplicate_data <- get_dupes(df_1, s_number)
+
+# Returns FALSE, so sorted in the ascending order, as expected
+#is.unsorted(df_1$s_number)
+```
+ 
+We don't have any duplicate datasets. All the incident in our datasets are unique. Lets also see if our datasets are recorded in chronological order.
+
+Lets take a quick look at our  datasets. Peek a boo!!
+```{r}
+# Lets take a peek of our datasets
+glimpse(df_1)
+```
+
+Lets first clean up our data before we vizualise it. There are lot of variables that can be imputed as well we need to clean up the missing values as well as create new variables. 
+
+```{r}
+# Factor conversion
+df_1$date <- lubridate::mdy(df_1$date) # Lets covert date to date from charcter.
+df_1$summary <- as.factor(df_1$summary) # convert summary to factor
+```
+
+# Variables
+
+## Map
+**Lets see the map to get a sense**
+```{r, warning=FALSE}
+world.map <- map_data("state")
+ggplot() + 
+  geom_map(data=world.map, map=world.map,
+           aes(x=long, y=lat, group=group, map_id=region),
+           fill="white", colour="black") + 
+  geom_point(data = df_1, 
+             aes(x = longitude, y = latitude, size = fatalities),color = "firebrick", alpha = .6) +
+  xlim(-130, -65) +
+  ylim(25,50) +
+  labs(title = "All Mass Shootings that occured between 1966 to 2017",
+      subtitle = "Size represents the fatalities")+
+  theme_fivethirtyeight()
+```
+**Date** 
+
+Lets start with date column. We will sepearte date column and create year,month,day, weekdays, day of week variables.According to the research, the days separating mass shooting occurrence went from on average 200 days during the period of 1983 to 2011 to 64 days since 2011.
+```{r}
+df_1 <- df_1 %>% 
+  dplyr::mutate(year = year(date), 
+                month = month(date),
+                month_name = month.abb[month],
+                day = day(date),
+                Weekday = weekdays(date),
+                dow = lubridate::wday(date),
+                Week = week(date))
+```
+
+## Title
+
+Lets look at some of the severe Mass Shooting in USA history from our datasets. Datasets is up until last Las Vegas Shootings. 
+
+- Below Wordcloud shows where were most of the Mass shooting occurs.
+```{r,warning= FALSE}
+inci_dents <- df_1 %>%
+              select(title,location,total_victims) %>%
+              arrange(desc(total_victims)) %>% 
+              head(10) # Lets pick only top ten otherwise it would be overcrowded.
+
+inci_dents <- inner_join(inci_dents,df_1,by=c("location","title")) 
+#Select column of interest
+inci_dents <- inci_dents %>% 
+                select(title,location,total_victims.x,month,day,year,fatalities,injured)
+
+formattable(inci_dents,align="l",list(total_victims.x=color_tile("lightsalmon","red"),fatalities=color_bar("cyan"),injured=color_bar("darkorchid")))
+
+# Word Cloud
+Corpus <- Corpus(VectorSource(df_1$title))
+Corpus <- Corpus(VectorSource(Corpus))
+Corpus <- tm_map(Corpus, removePunctuation)
+Corpus <- tm_map(Corpus, stripWhitespace)
+Corpus <- tm_map(Corpus, removeWords, stopwords('english'))
+Corpus <- tm_map(Corpus, removeWords, 'shooting')
+wordcloud(Corpus,  scale=c(5,0.5), max.words = 200, use.r.layout=FALSE, 
+          rot.per = 0.3, random.order = FALSE, colors=brewer.pal(8, 'Dark2'))
+```
+
+Like mass shootings in general, school shootings have gone from being a rare tragedy to a tragic reality. Already in 2018 there have been more than a dozen instances of gun violence in U.S. schools.We may be unsure where to even begin with such a heavy topic. Consider asking our kids what their questions are before you give our two cents.But, yet, there are many individuals who suffered childhood and adulthood traumas and severe abuse and they did not become rampage shooters. They developed healthy relationships with others. Are school shooters unable to develop healthy relationships with others?
+
+## Total Fatalities
+
+Lets Look at the Total Fatalities Number over the course of year. Lets use Line graph and bar plot to show the 
+```{r, fig.width= 7, fig.height= 3}
+#1. Plot of # number of shootings by year and total victims 
+fatalities_yr<- df_1 %>% 
+                      select(year, fatalities, injured, total_victims) %>%
+                      melt(id.vars=c("year"), measure.vars = c("fatalities","injured","total_victims"))
+
+p <- ggplot(data = fatalities_yr %>% 
+        group_by(year, variable) %>% 
+        summarize(shoot_ings = length(year),fatalities = sum(value)),
+             aes(x=year, y=shoot_ings)) + 
+  geom_line(size=.5,color="black") +
+  geom_point(shape=18,size=1, fill="black",stroke=1.2, color = "black") +
+  theme_fivethirtyeight() +
+  scale_fill_gdocs() +
+  ggtitle("Total Mass Shooting \n between 1966-2017") 
+
+q <- ggplot() +
+  geom_bar(data = fatalities_yr %>%
+             filter(variable == "total_victims") %>%
+             group_by(year, variable) %>%
+             summarize(shoot_ings = length(year), fatalities = sum(value)),
+           aes(x=year, y=fatalities, fill = variable), stat="identity") +
+  theme_fivethirtyeight() + 
+  guides(fill = FALSE)+ # Remove legends
+  ggtitle("Total victims 1966-2017") 
+
+plot_grid(p, q, labels = c('A', 'B')) # We can see side by side.
+```
+
+It is clear from above bar graph that shooting is increasing over the course of years. How does the Gender play a role in it?
+
+We will basically sum up into 4 variables. Either the person is Male, Female, Male/Female or Unkown to keep our analysis simple.
+```{r, include= FALSE}
+# Gender
+# Before Clean up 
+#table(df_1$gender) # Uncomment to see how it looks before.
+
+# Lest recode Male,Female, Male/Female and Unknown.
+df_1$gender[df_1$gender=="M"] <- "Male"
+df_1$gender[df_1$gender=="F"] <- "Female"
+df_1$gender[df_1$gender=="M/F"] <- "Male/Female"
+df_1$gender[df_1$gender==""] <- "Unknown"
+# After Cleanup
+table(df_1$gender)
+# nlevels(df_1$gender) # should give us 4 if you want to double check
+# sum(table(df_1$gender))==nrow(df_1) # Sanity check 
+```
+
+Lets clean up the cause variables and aggregate into same bin which makes more sense to bucket in.
+```{r, include = FALSE}
+# Cause
+#table(df_1$cause)
+df_1$cause[df_1$cause%in%c(""," ")]<-"Unknown"
+df_1$cause[df_1$cause %in%c ("domestic disputer","domestic dispute")]<-"Domestic Dispute"
+df_1$cause[df_1$cause %in%c ("anger","frustration")]<-"Anger and Fustration"
+df_1$cause[df_1$cause %in%c ("suspension","failing exams")]<-"suspension & Failing exams"
+df_1$cause[df_1$cause %in%c ("breakup","drunk","religious radicalism","robbery")]<-"Other"
+
+table(df_1$cause)
+
+
+```
+
+```{r, include = FALSE}
+
+# Race
+# table(df_1$race) # Uncomment to see how it looks before.
+
+# Lets Recode
+df_1$race[df_1$race==""]<-"Unknown"
+
+df_1$race[df_1$race %in%c ("black","Black American or African American/Unknown","Black")]<-"Black American or African American"
+
+df_1$race[df_1$race %in%c ("white","White","White American or European American/Some other Race")]<-"White American or European American"
+         
+df_1$race[df_1$race %in%c ("Some other race","Two or more races")]<-"Other"
+
+df_1$race[df_1$race %in%c ("Asian American/Some other race","Asian","Asian American")]<-"Asian or Asian American"
+
+table(df_1$race)
+```
+
+## Mental Health Issues: 
+
+How many Mental Health cases do we know about shooters?
+```{r}
+table(df_1$mental_health_issues)
+df_1$mental_health_issues[df_1$mental_health_issues %in%c( "Unclear","unknown")] <-"Unknown"
+
+## What were Mental Health Issues after data cleanup?
+as.data.frame(table(df_1$mental_health_issues)) %>%
+  plot_ly(labels = ~Var1, values = ~Freq, type = 'pie') %>%
+  layout(title = 'What were the mental health issues?',
+         xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
+         yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
+```
+
+
+
+
+What are the most common target place choosed by Shooters?
+
+```{r, include = FALSE}
+# Target
+# sort(xtabs(formula = ~target, data = df_1), decreasing = TRUE) # Uncomment to see 
+#Preprocessing Target
+df_1$target[df_1$target == "random"] <- "Random" 
+df_1$target[df_1$target == "NA"] <- "Unknown" 
+df_1$target[df_1$target %in%c("Family","neighbors","Children","Family/Neighbors","Family+random","Friends","Family+students","partner's family","women")]<-"Friends & Family"
+ 
+df_1$target[df_1$target %in% c("Coworkers","Ex-Coworkers","coworkers","Coworker's Family")]<-"Coworkers"
+        
+df_1$target[df_1$target  %in% c("Students","Students+Teachers","Teachers","school girls","Students+Parents","Family+students")]<-"School"
+        
+df_1$target[df_1$target %in% c("Ex-Wife","Ex-Wife & Family","Ex-Girlfriend","Ex-girlfriend","Ex-GirlFriend","Girlfriend","Ex-Girlfriend+random","Ex-Girlfriend & Family")]<-"Ex- GF/Wife"
+         
+df_1$target[df_1$target %in% c("Policeman","police","Marines","Policeman+Council Member", "TSA Officer","Trooper","Social Workers")]<-"Police/Trooper" 
+         
+df_1$target[df_1$target %in% c("party guests","uninvited guests","club members","birthday party bus")]<-"Parties"
+          
+df_1$target[df_1$target%in% c("Sikhs","monks","prayer group")]<-"Religious Group"
+
+df_1$target[df_1$target%in% c("welding shop employees","hunters","lawyers","black men","Congresswoman","Contestant","drug dealer", "House Owner", "protestors","postmaster","rapper+random","psychologist+psychiatrist","basketball players")]<-"Other"
+   
+sort(table(df_1$target), decreasing = TRUE)        
+```
+
+Where does Shooter prefer to choose as choice of their location?
+
+```{r, include= FALSE}
+#Open_close_location
+
+# sort(xtabs(formula = ~open_close_location, data = df_1), decreasing = TRUE)
+df_1$open_close_location[df_1$open_close_location == "Open+CLose"] <- "Open+Close" 
+sort(xtabs(formula = ~open_close_location, data = df_1), decreasing = TRUE)
+```
+
+```{r, include=FALSE}
+# Location
+# Lets keep the location column just by passing remove = FALSE
+df_1 <- df_1 %>% separate(location , into = c("city", "state"), sep = ",", remove = FALSE) # split the location
+df_1 <- df_1 %>% mutate(city = tolower(city))# keep all the elemet to lower case
+```
+
+We get additional error for 4 rows [147, 176, 225, 241]. Lets dive into those column and see why we are getting that error.
+
+```{r, include=FALSE}
+# Lets look into those rows why it is generating error
+df_1[c(147, 176, 225, 241), c("location", "city", "state")]
+```
+
+We can see in these 4 rows we have multiple comma to seperate thats why it throws an error. It took first comma to split into city and state. We can fix these by making seperate more friendly.
+
+```{r, warning= FALSE, include=FALSE}
+# Now we are splitting based on last comma to city and state.
+df_1 <- separate(df_1, location, c("city", "state"), sep = ",(?=[^,]+$)", remove=FALSE)
+df_1[c(147, 176, 225, 241), c("location", "city", "state")]
+```
+
+```{r, include = FALSE}
+sort(table(df_1$state),decreasing = TRUE)
+```
+
+We can also find out how many unique values  are there for any Location if State is NA:
+```{r, include=FALSE}
+unique((df_1[is.na(df_1$state),c("location", "city", "state")])[ ,1]) # 1 Is for location, 2 is for city.
+```
+
+But We know that Washington DC is not Considered as State. A state which is referred as "Taxation Without Representation". Lets find out which column is it. We can ignore it or make a seperate state just for analysis.
+
+```{r, include=FALSE}
+df_1 %>% filter(location == "Washington D.C.")
+```
+
+## STATES
+```{r, include = FALSE}
+# Lets write a function to get states from our datasets and then split into state and city.
+get_states <- function(dataset)
+{
+  splitStates = str_split(dataset,',')
+  return(splitStates[[1]][2])
+}
+
+df_1$state <-  NULL
+locations = data.frame(locations = df_1$location) # Extract from locataions
+df_1$state <- apply(locations,MARGIN=1 ,FUN = get_states)
+
+# Lets impute the some clean state names where it is missing.
+create_pattern <- c("TX|CO|MD|NV|CA|PA|WA|LA")
+replace_with <- c("Texas", "Colorado", "Maryland", "Nevada", "California", "Pennsylvania", "Washington", "Los Angels")
+df_1$state <- df_1$state %>% 
+  str_replace_all(pattern = create_pattern, 
+                  replacement = replace_with)
+df_1$state<- df_1$state %>% str_replace_all(c("Texas " = "Texas", " Virginia" = "Virginia"))
+df_1$state <- as.factor(df_1$state)
+```
+
+When We break down by the states which states have most of the Shootings.
+```{r}
+# sort(table(df_1$state),decreasing = TRUE)
+# sum(is.na(df_1$state)) # we have 46 Missing
+
+p <-df_1 %>%
+      filter(!is.na(state)) %>%
+      group_by(state) %>%
+      summarise(count = n()) %>%
+      arrange(desc(count)) %>%
+      ungroup() %>%
+      mutate(state = reorder(state,count)) %>%
+      head(10) %>%
+      ggplot(aes(x = state,y = count)) +
+      geom_bar(stat='identity',color="white", fill = "lightslategray") +
+      geom_text(aes(x = state, y = 1, label = count),
+              hjust=0, vjust=.5, size = 4, color = 'black',
+              fontface = 'bold') +
+    labs(x = 'States', 
+         y = 'No. of Shootings', 
+         title = 'Number of Shootings/State') +
+       coord_flip() +
+       theme_fivethirtyeight()
+ggplotly(p)
+
+# Percentage by race
+perc_state<- df_1%>%
+              filter(!is.na(state)) %>% 
+              group_by(state) %>%
+              summarise(count=n()) %>%
+              mutate(perc=round((count/sum(count))*100),"%") %>%
+              arrange(desc(count)) %>% 
+              head(10)
+formattable(perc_state,align=c("l","r","r"),list(count=color_bar("mediumslateblue"),perc=color_tile("white","lightsalmon")))
+
+```
+
+
+**California,Florida and Texas** have the most shooters.
+
+Now we are left with empty values in Location, and there are 45 of those. We can deal with those missing states with he use of Latitude and Longitude data which is avialable to us.But for these we can use google geocode variables but you need API for that. 
+
+For all these observations, Location is empty. But coordinates are given in Longitude and Latitude. This is one way to derive address from coordinates to further be used for filling State and City values:
+
+
+
+```{r, include = FALSE}
+# Age
+# Impute missing values of Age with mean value
+df_1$age<-ifelse(is.na(df_1$age),mean(df_1$age,na.rm = TRUE),df_1$age)
+
+shootings_less_than_20 <-  df_1 %>% filter(between(age, 0, 20))
+shootings_20_30 <-  df_1 %>% filter(between(age, 20, 30))
+shootings_30_40 <-  df_1 %>% filter(between(age, 30, 40))
+shootings_40_50 <-  df_1 %>% filter(between(age, 40, 50))
+shootings_50_60 <-  df_1 %>% filter(between(age, 50, 60))
+shootings_60_70 <-  df_1 %>% filter(between(age, 60, 70))
+shootings_70_80 <-  df_1 %>% filter(between(age, 70, 80))
+
+```
+
+
+# Decade 
+
+```{r, warning= FALSE}
+df_1 <- df_1 %>% 
+  mutate(decade = (case_when(year >= 1960 & year < 1970 ~ "1960s", 
+                             year >= 1970 & year < 1980 ~ "1970s", 
+                             year >= 1980 & year < 1990 ~ "1980s", 
+                             year >= 1990 & year < 2000 ~ "1990s", 
+                             year >= 2000 & year < 2010 ~ "2000s", 
+                             year >= 2010 & year < 2020 ~ "2010s")))
+decade_boxplot <- df_1 %>% 
+  ggplot(aes(x =decade, y = age, fill = decade)) +
+  geom_boxplot() + 
+  labs(x = "Each Decade", title = "Age Distribution of Mass Shooter decadewise")+
+  theme_fivethirtyeight()
+ggplotly(decade_boxplot)
+```
+
+# Race
+```{r}
+p <-df_1 %>%
+       filter(!is.na(race)) %>%
+        group_by(race) %>%
+        summarise(count = n()) %>%
+        arrange(desc(count)) %>%
+        mutate(race = reorder(race,count)) %>% 
+        ungroup() %>%
+        ggplot(aes(x = race,y = count)) +
+        geom_bar(stat='identity',color="white", fill = "#D8BFD8") +
+        geom_text(aes(x = race, y = 10, label = count),
+              hjust=0, vjust=.5, size = 4, color = 'black',
+              fontface = 'bold') +
+        coord_flip() +
+       labs(x = 'Race', 
+            y = 'No. of Shootings', 
+            title = 'Number of Shootings/Race')+
+  theme_fivethirtyeight()
+       
+ggplotly(p)
+
+# Percentage by race
+perc_race <- df_1%>%
+              group_by(race) %>%
+              summarise(count=n()) %>%
+              mutate(perc=round((count/sum(count))*100)) %>%
+              arrange(desc(count))
+
+formattable(perc_race,align=c("l","r","r"),list(count=color_bar("mediumslateblue"),perc=color_tile("white","lightsalmon")))
+
+# Pie chart
+shooter <- data.frame(table(df_1$race))
+colnames(shooter) <- c("race","freq")
+ggplot(shooter,aes(x=race,
+                   y=freq,
+                   fill=race))+
+  theme(legend.position="none")+
+  geom_bar(stat="identity",width = 1)+
+  coord_polar(theta = "y")
+```
+
+The statistic shows the number of mass shootings in the United States between 1982 and November 19, 2018, by race and ethnicity of the shooter(s). Between 1982 and November 2018, 60 out of 107 mass shootings were initiated by White shooters. The Las Vegas strip massacre in 2017 had the highest number of victims between 1982 and 2018, with 58 people killed, and over 500 injured.
+
+Outer legends represents the White American or European American. 
+
+`Is it fare to say that some other races are also participating in Mass Shooting beside Whites.`
+
+How has other races evolve in Mass Shootings. Lets look at the transition of our datasets.
+
+<font color="red">**You can hover over the plots to know the details**</font>
+
+```{r, warning= FALSE}
+pattern2 = c("black|Some other race|white")
+replacement2 = c("Black", "Other", "White")
+df_1$race <- df_1$race %>% 
+  str_replace(pattern = pattern2, replacement = replacement2)
+transition <-df_1 %>% 
+  ggplot(aes(x = year, fill = race)) + 
+  geom_bar() +
+  labs(title = "Race Transition of Mass Shooters")+
+  guides(fill = FALSE)+
+  scale_fill_gdocs() +
+  scale_color_colorblind(name  = "race")+
+  theme(text = element_text())
+ggplotly(transition) %>% layout(showlegend = FALSE)
+
+# Race Transitions
+decade_trasition_race <- df_1 %>% 
+  ggplot(aes(x = decade, fill = race)) + # Lets fill the color = race to see its involvemnet over course of year.
+  geom_histogram(stat = "count", show.legend = F,position = "fill") + 
+  labs(title = "Race Transition of Mass Shooters over the period of time")+
+  guides(fill = FALSE)+
+  scale_fill_gdocs() +
+  scale_color_colorblind(name  = "race")+
+   theme(text = element_text())
+ggplotly(decade_trasition_race) %>% layout(showlegend = FALSE)
+```
+
+In 1960 Where Mass shooting was commited by White race.Over the course of year as more people are moving and coming of different race we can see their is variety of race participating in Mass Shootings but still the White American/ European American is still dominant.
+
+# Fatalities and Victim
+
+Lets use the timeseries plot to know some basic understanding of how many people were injured and how many were dead based on variables Type of Victim. We need to reshape the data to pull out the Total Number of fatalities and injured. After reshaping our data in long format we can use plotly.
+
+**Number and type of casualties by year and month** 
+
+```{r, warning= FALSE}
+victims_per_year <- df_1 %>% select(date,fatalities,injured)
+
+victims_per_year_long <- melt(victims_per_year,
+                              id.vars="date", # Pick by date
+                              measure.vars=c("fatalities","injured"),
+                              variable.name= "type_of_victim",
+                              value.name = "count")
+
+p <-victims_per_year_long %>% ggplot(aes(x=date, y=count, color=type_of_victim)) +
+  geom_line() +
+  geom_point(alpha=0.1) +
+  theme_fivethirtyeight() +
+  #scale_x_date(breaks=pretty_breaks(n=10)) +
+  guides(fill = FALSE) #+ # remove the legends.
+  labs(title = "Number of Victims/Year")+
+  scale_color_colorblind(name  = "type_of_victim")+
+  scale_fill_gdocs() 
+ggplotly(p)
+
+# We will Remove October incidents and see the same plot.
+
+q <- victims_per_year_long %>% 
+  filter(date !="2017-10-01") %>% 
+  ggplot(aes(x=date, y=count, color=type_of_victim)) +
+  geom_line() +
+  geom_point(alpha=0.1) +
+  theme_fivethirtyeight() +
+  guides(fill = FALSE) + # remove the legends.
+  labs(title = "Number of Victims/Year removing Las Vegas October shooting.")+
+  scale_color_colorblind(name  = "type_of_victim")+
+  scale_fill_gdocs() 
+ggplotly(q)
+
+fatilities_injured<- df_1 %>% 
+                      select(year,month, fatalities,injured, total_victims) %>%
+                      melt(id.vars=c("year", "month"), measure.vars = c("fatalities","injured","total_victims"))
+
+ggplot(data = fatilities_injured, aes(x=month, y=year, color=variable)) + 
+  geom_point(shape=15, size=4, alpha=.3) + 
+  facet_grid(.~variable, scales="free") +
+  coord_flip()+
+  theme_fivethirtyeight() + 
+  ggtitle("Total Victims, Fatalities, and Injured by Month and year") +
+  theme(text = element_text())
+
+#3. Average total victims, fatalities, # injured per shooting over the years
+ggplot(data = fatilities_injured %>% 
+         group_by(year, variable) %>% 
+         summarize(n_shootings = length(year),
+                   fatalities = sum(value),
+                   averages = fatalities/n_shootings),
+       aes(x=year, y=averages, colour=variable)) + 
+  geom_line(size=1) +
+  ggtitle("Avg. Victims,fatalities, injured in one chart") +
+  ylab("Average per shooting incident") +
+  theme_fivethirtyeight() + 
+  scale_fill_gdocs() +
+  scale_y_continuous(limits = c(0,30)) +
+  scale_color_colorblind() +
+  theme(text = element_text())
+```
+
+# Calendar Plot
+
+As we have one huge Las Vegas Shooting it's really hard to see all others incidents that occured from 1965 till date. Once we remove the 2017 which can be considered as one of the outlier in the whole datasets. Lets see by removing this.
+
+By visualizing year we could see recently towards the end there are lot of mass shooting that happen towards year 2012 and beyond. To diagnose even further we can use calendar plot function to see if there was a certain months where the mass shooting occured most or is throughout the year. Does calendar month, day have anything in common.
+
+```{r}
+calender_month <- df_1 %>% select(date, total_victims) # Lets create a subset
+calender_month$date <- ymd(calender_month$date) # Convert into dateformat
+calender_month <-  calender_month %>%
+                    dplyr::mutate(year = lubridate::year(date),
+                                  month = lubridate::month(date),
+                                  month_name = month.abb[month],
+                                  day = lubridate::day(date),
+                                  dow = lubridate::wday(date))
+
+# These beautiful code to generate Calendar Heatmap is by Paul Bleicher.
+## Copyright 2009 Humedica. All rights reserved. I really like his work and thought to use to find any relationship.
+
+calendarHeat <- function(dates, 
+                         values, 
+                         ncolors=99, 
+                         color="r2g", 
+                         varname="Values",
+                         date.form = "%Y-%m-%d",...) {
+  require(lattice)
+  require(grid)
+  require(chron)
+  if (class(dates) == "character" | class(dates) == "factor" ) {
+    dates <- strptime(dates, date.form)
+  }
+  caldat <- data.frame(value = values, dates = dates)
+  min.date <- as.Date(paste(format(min(dates), "%Y"),
+                            "-1-1",sep = ""))
+  max.date <- as.Date(paste(format(max(dates), "%Y"),
+                            "-12-31", sep = ""))
+  dates.f <- data.frame(date.seq = seq(min.date, max.date, by="days"))
+  
+  # Merge moves data by one day, avoid
+  caldat <- data.frame(date.seq = seq(min.date, max.date, by="days"), value = NA)
+  dates <- as.Date(dates) 
+  caldat$value[match(dates, caldat$date.seq)] <- values
+  
+  caldat$dotw <- as.numeric(format(caldat$date.seq, "%w"))
+  caldat$woty <- as.numeric(format(caldat$date.seq, "%U")) + 1
+  caldat$yr <- as.factor(format(caldat$date.seq, "%Y"))
+  caldat$month <- as.numeric(format(caldat$date.seq, "%m"))
+  yrs <- as.character(unique(caldat$yr))
+  d.loc <- as.numeric()                        
+  for (m in min(yrs):max(yrs)) {
+    d.subset <- which(caldat$yr == m)  
+    sub.seq <- seq(1,length(d.subset))
+    d.loc <- c(d.loc, sub.seq)
+  }  
+  caldat <- cbind(caldat, seq=d.loc)
+  
+  #color styles
+  r2b <- c("#0571B0", "#92C5DE", "#F7F7F7", "#F4A582", "#CA0020") #red to blue                                       
+  r2g <- c("#D61818", "#FFAE63", "#FFFFBD", "#B5E384")   #red to green
+  w2b <- c("#045A8D", "#2B8CBE", "#74A9CF", "#BDC9E1", "#F1EEF6")   #white to blue
+  
+  assign("col.sty", get(color))
+  calendar.pal <- colorRampPalette((col.sty), space = "Lab")
+  def.theme <- lattice.getOption("default.theme")
+  cal.theme <-
+    function() {  
+      theme <-
+        list(
+          strip.background = list(col = "transparent"),
+          strip.border = list(col = "transparent"),
+          axis.line = list(col="transparent"),
+          par.strip.text=list(cex=0.8))
+    }
+  lattice.options(default.theme = cal.theme)
+  yrs <- (unique(caldat$yr))
+  nyr <- length(yrs)
+  print(cal.plot <- levelplot(value~woty*dotw | yr, data=caldat,
+                              as.table=TRUE,
+                              aspect=.12,
+                              layout = c(1, nyr%%7),
+                              between = list(x=0, y=c(1,1)),
+                              strip=TRUE,
+                              main = paste("Calendar Heat Map of ", varname, sep = ""),
+                              scales = list(
+                                x = list(
+                                  at= c(seq(2.9, 52, by=4.42)),
+                                  labels = month.abb,
+                                  alternating = c(1, rep(0, (nyr-1))),
+                                  tck=0,
+                                  cex = 0.7),
+                                y=list(
+                                  at = c(0, 1, 2, 3, 4, 5, 6),
+                                  labels = c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
+                                             "Friday", "Saturday"),
+                                  alternating = 1,
+                                  cex = 0.6,
+                                  tck=0)),
+                              xlim =c(0.4, 54.6),
+                              ylim=c(6.6,-0.6),
+                              cuts= ncolors - 1,
+                              col.regions = (calendar.pal(ncolors)),
+                              xlab="" ,
+                              ylab="",
+                              colorkey= list(col = calendar.pal(ncolors), width = 0.6, height = 0.5),
+                              subscripts=TRUE
+  ) )
+  panel.locs <- trellis.currentLayout()
+  for (row in 1:nrow(panel.locs)) {
+    for (column in 1:ncol(panel.locs))  {
+      if (panel.locs[row, column] > 0)
+      {
+        trellis.focus("panel", row = row, column = column,
+                      highlight = FALSE)
+        xyetc <- trellis.panelArgs()
+        subs <- caldat[xyetc$subscripts,]
+        dates.fsubs <- caldat[caldat$yr == unique(subs$yr),]
+        y.start <- dates.fsubs$dotw[1]
+        y.end   <- dates.fsubs$dotw[nrow(dates.fsubs)]
+        dates.len <- nrow(dates.fsubs)
+        adj.start <- dates.fsubs$woty[1]
+        
+        for (k in 0:6) {
+          if (k < y.start) {
+            x.start <- adj.start + 0.5
+          } else {
+            x.start <- adj.start - 0.5
+          }
+          if (k > y.end) {
+            x.finis <- dates.fsubs$woty[nrow(dates.fsubs)] - 0.5
+          } else {
+            x.finis <- dates.fsubs$woty[nrow(dates.fsubs)] + 0.5
+          }
+          grid.lines(x = c(x.start, x.finis), y = c(k -0.5, k - 0.5), 
+                     default.units = "native", gp=gpar(col = "grey", lwd = 1))
+        }
+        if (adj.start <  2) {
+          grid.lines(x = c( 0.5,  0.5), y = c(6.5, y.start-0.5), 
+                     default.units = "native", gp=gpar(col = "grey", lwd = 1))
+          grid.lines(x = c(1.5, 1.5), y = c(6.5, -0.5), default.units = "native",
+                     gp=gpar(col = "grey", lwd = 1))
+          grid.lines(x = c(x.finis, x.finis), 
+                     y = c(dates.fsubs$dotw[dates.len] -0.5, -0.5), default.units = "native",
+                     gp=gpar(col = "grey", lwd = 1))
+          if (dates.fsubs$dotw[dates.len] != 6) {
+            grid.lines(x = c(x.finis + 1, x.finis + 1), 
+                       y = c(dates.fsubs$dotw[dates.len] -0.5, -0.5), default.units = "native",
+                       gp=gpar(col = "grey", lwd = 1))
+          }
+          grid.lines(x = c(x.finis, x.finis), 
+                     y = c(dates.fsubs$dotw[dates.len] -0.5, -0.5), default.units = "native",
+                     gp=gpar(col = "grey", lwd = 1))
+        }
+        for (n in 1:51) {
+          grid.lines(x = c(n + 1.5, n + 1.5), 
+                     y = c(-0.5, 6.5), default.units = "native", gp=gpar(col = "grey", lwd = 1))
+        }
+        x.start <- adj.start - 0.5
+        
+        if (y.start > 0) {
+          grid.lines(x = c(x.start, x.start + 1),
+                     y = c(y.start - 0.5, y.start -  0.5), default.units = "native",
+                     gp=gpar(col = "black", lwd = 1.75))
+          grid.lines(x = c(x.start + 1, x.start + 1),
+                     y = c(y.start - 0.5 , -0.5), default.units = "native",
+                     gp=gpar(col = "black", lwd = 1.75))
+          grid.lines(x = c(x.start, x.start),
+                     y = c(y.start - 0.5, 6.5), default.units = "native",
+                     gp=gpar(col = "black", lwd = 1.75))
+          if (y.end < 6  ) {
+            grid.lines(x = c(x.start + 1, x.finis + 1),
+                       y = c(-0.5, -0.5), default.units = "native",
+                       gp=gpar(col = "black", lwd = 1.75))
+            grid.lines(x = c(x.start, x.finis),
+                       y = c(6.5, 6.5), default.units = "native",
+                       gp=gpar(col = "black", lwd = 1.75))
+          } else {
+            grid.lines(x = c(x.start + 1, x.finis),
+                       y = c(-0.5, -0.5), default.units = "native",
+                       gp=gpar(col = "black", lwd = 1.75))
+            grid.lines(x = c(x.start, x.finis),
+                       y = c(6.5, 6.5), default.units = "native",
+                       gp=gpar(col = "black", lwd = 1.75))
+          }
+        } else {
+          grid.lines(x = c(x.start, x.start),
+                     y = c( - 0.5, 6.5), default.units = "native",
+                     gp=gpar(col = "black", lwd = 1.75))
+        }
+        
+        if (y.start == 0 ) {
+          if (y.end < 6  ) {
+            grid.lines(x = c(x.start, x.finis + 1),
+                       y = c(-0.5, -0.5), default.units = "native",
+                       gp=gpar(col = "black", lwd = 1.75))
+            grid.lines(x = c(x.start, x.finis),
+                       y = c(6.5, 6.5), default.units = "native",
+                       gp=gpar(col = "black", lwd = 1.75))
+          } else {
+            grid.lines(x = c(x.start + 1, x.finis),
+                       y = c(-0.5, -0.5), default.units = "native",
+                       gp=gpar(col = "black", lwd = 1.75))
+            grid.lines(x = c(x.start, x.finis),
+                       y = c(6.5, 6.5), default.units = "native",
+                       gp=gpar(col = "black", lwd = 1.75))
+          }
+        }
+        for (j in 1:12)  {
+          last.month <- max(dates.fsubs$seq[dates.fsubs$month == j])
+          x.last.m <- dates.fsubs$woty[last.month] + 0.5
+          y.last.m <- dates.fsubs$dotw[last.month] + 0.5
+          grid.lines(x = c(x.last.m, x.last.m), y = c(-0.5, y.last.m),
+                     default.units = "native", gp=gpar(col = "black", lwd = 1.75))
+          if ((y.last.m) < 6) {
+            grid.lines(x = c(x.last.m, x.last.m - 1), y = c(y.last.m, y.last.m),
+                       default.units = "native", gp=gpar(col = "black", lwd = 1.75))
+            grid.lines(x = c(x.last.m - 1, x.last.m - 1), y = c(y.last.m, 6.5),
+                       default.units = "native", gp=gpar(col = "black", lwd = 1.75))
+          } else {
+            grid.lines(x = c(x.last.m, x.last.m), y = c(- 0.5, 6.5),
+                       default.units = "native", gp=gpar(col = "black", lwd = 1.75))
+          }
+        }
+      }
+    }
+    trellis.unfocus()
+  } 
+  lattice.options(default.theme = def.theme)
+}
+```
+
+
+```{r, fig.width=7, fig.height=7}
+calender_month_2012_2017 <- calender_month %>% filter(year %in% 2012:2017)
+calendarHeat(calender_month_2012_2017$date, calender_month_2012_2017$total_victims, varname="victims")
+```
+
+In year 2012 we haven't seen more shootings but which occured in Sandy hook Elementary School was henious. From 2012-2014 it has spread across the board with no correlations at all. In year 2015 we can see Mass Shooting crime is happening more mostly in beginning of the year.In early months of 2016 we can see there are more incidents which has occured. Something definetly seems to happen in year 2016 which has caused less access to guns or guns law which creates huge spun and in the year 2017 we see less crime than recent previous years but one of the deadliest shooting in US history also happen in year 2017 October 2nd.
+
+In Some of my previous work Exploratory data analysis I have got a chance to use leaflet to zoom iniside city geographical locations. I will try to use same function over here. 
+```{r}
+fatalities_map <- df_1 %>% 
+                  select(location,latitude,longitude,injured,fatalities,summary) %>% 
+                  filter(!is.na(latitude) | !is.na(longitude)) #%>% # Need to remove missing lat and long.
+
+leaflet(data = fatalities_map) %>% 
+  addProviderTiles(providers$CartoDB.Positron) %>%
+  fitBounds(-124, 30, -66, 43) %>%
+  addCircles(color="firebrick",
+             lng = ~longitude,
+             lat = ~latitude,
+             weight = 1,
+             radius = ~fatalities* 5000, # size of circle represent fatalities, multiply by 5000 to magnify.
+             popup = ~fatalities )
+```
+
+We will try to take our independent variable shooting and try to see if it has any dependent variables across the board.
+
+**On_duty fallen Officers**
+```{r}
+table(df_1$policeman_killed)
+```
+
+# Relationship between the variables{.tabset .tabset-fade .tabset-pills}
+
+After cleaning the data we will try to explore our variables and relate it to shooting. Try to find if there exist any sort of relationship between shooting dependent variables and all these independent variables. 
+```{r}
+```
+
+# Race : Mental Health Issues
+```{r}
+plot_ly(data = df_1,x = ~ race,type = 'histogram',color =~mental_health_issues) %>% 
+layout(title = "Relationship between Race with Mental Health Issues",xaxis = list(title = "Race"),showlegend = T, legend = list(x = 0, y = 1),barmode = 'stack',hovermode = 'compare')
+
+p <-df_1 %>%
+    filter(!is.na(mental_health_issues)) %>%
+    group_by(mental_health_issues) %>%
+    summarise(count = n()) %>%
+    arrange(desc(count)) %>%
+    ungroup() %>%
+    ggplot(aes(x = reorder(mental_health_issues,count),y = count)) +
+        geom_bar(stat='identity',color="white", fill = "palevioletred") +
+        geom_text(aes(x = mental_health_issues, y = 5, label = count),
+              hjust=0, vjust=.5, size = 4, color = 'black',
+              fontface = 'bold') +
+       labs(x = 'Mental Health Issues', 
+            y = 'No. of Shootings', 
+            title = 'No of Shootings/Race') +
+       coord_flip() +
+      theme_fivethirtyeight()
+
+ggplotly(p)
+
+# Percentage by race
+perc_mental_health <- df_1%>%
+              group_by(mental_health_issues) %>%
+              summarise(count=n()) %>%
+              mutate(perc=round((count/sum(count))*100),"%") %>%
+              arrange(desc(count))
+
+formattable(perc_mental_health,align=c("l","r","r"),list(count=color_bar("mediumslateblue"),perc=color_tile("white","lightsalmon")))
+
+```
+
+The number of shooters with and without mental issues do not differ much.
+
+# Race : Shooter
+```{r, warning = FALSE}
+race_shoot<- df_1 %>% 
+                      select(decade, race, fatalities,injured, total_victims) %>%
+                      melt(id.vars=c("decade", "race"), measure.vars = c("fatalities","injured","total_victims"))
+
+race_shoot <- race_shoot %>%
+  group_by(decade, race, variable) %>%
+  summarize(total_casualities = sum(value),
+            total_shootings = length(decade),
+            average_casualities = total_casualities/total_shootings)
+
+temp_blank <- expand.grid(race= c("Black", "White", "Unknown", "Latino", "Asian"),
+                    decade = c("1970s", "1980s", "1990s", "2000s", "2010s"),
+                    variable = c("Total victims", "Fatalities", "Injured"))
+
+race_shoot <- merge(x=temp_blank, y=race_shoot, by = c("decade", "race", "variable"), all.x=T, all.y=T)
+race_shoot[is.na(race_shoot)] <- 0 # We will only take complete cases where is na we impute with 0.
+race_shoot <- race_shoot %>%
+                group_by(decade, variable) %>%
+                  mutate(perc_total_casualities = total_casualities / sum(total_casualities))
+
+#4b Proportion of casualities by race, by decade
+p <- ggplot() +
+  geom_bar(data = race_shoot %>% filter(variable == "total_victims"),
+           aes(x="", y=perc_total_casualities, fill = race), stat="identity") +
+  coord_polar("y", start = 0) + 
+  ggtitle("Prop. of Massshooters by Race,") +
+  theme_fivethirtyeight() + 
+  scale_fill_wsj() +
+  xlab('') +
+  ylab('') + 
+  facet_grid(.~decade) +
+  theme(strip.text.x = element_text(size = 10)) +
+  theme(text = element_text()) +
+  guides(fill=guide_legend(title="Race")) +
+  theme(axis.text = element_blank())
+p
+
+q <- ggplot() +
+  geom_bar(data = (race_shoot) %>% filter(variable == "total_victims"),
+           aes(x=race, y=average_casualities, fill=decade), stat="identity", position = "dodge") + 
+  theme_minimal() + scale_fill_wsj() +
+  ggtitle("Avg. number of victims/shooting, by race") +
+  #coord_flip()+
+  theme(text = element_text()) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 0.5))+
+  ylab("Avg. casualties/shooting") +
+  xlab("Race") 
+
+ggplotly(q)
+
+```
+
+
+# Shootings : Cause
+```{r}
+#sum(is.na(df_1$cause)) # We have 77 Missing data for the cause of Shootings.
+p <- df_1 %>%
+     filter(!is.na(cause)) %>%
+     group_by(cause) %>%
+     summarise(count = n()) %>%
+     arrange(desc(count)) %>%
+     ungroup() %>%
+    ggplot(aes(x = reorder(cause,count),y = count)) +
+    geom_bar(stat='identity',color="white", fill = "steelblue") +
+    geom_text(aes(x = cause, y = 2, label = count),
+              hjust=0, vjust=.5, size = 4, color = 'black',
+              fontface = "bold.italic", family="Times") +
+  theme_fivethirtyeight()+
+    labs(x = 'cause',
+         y = 'No. of Shootings',
+         title = 'Number of Shootings based on known Cause') +
+       coord_flip()
+ggplotly(p)
+
+# Percentage by incident area
+perc_cause <- df_1%>%
+                filter(!is.na(cause)) %>% 
+                group_by(cause) %>%
+                summarise(count=n()) %>%
+                mutate(perc=round((count/sum(count))*100),"%") %>%
+                arrange(desc(count)) %>% 
+                head(10)
+                
+formattable(perc_cause,align=c("l","r","r"),list(count=color_bar("mediumslateblue"),perc=color_tile("white","lightsalmon")))
+```
+
+From the above observation most of the Mass Shootings happens either is Shooter is consider mentally retarded termed here as a `psycho`,some are related to `terrorism` and third one is because of lack of Anger and Frustation management. Out of top three crimes I believe third one could have been controlled if guns were not accessible to these persons.
+
+# Shootings : Target
+```{r}
+# sum(is.na(df_1$target)) # We have 5 Missing data for the target of Shootings.
+p <- df_1 %>%
+     filter(!is.na(target)) %>%
+     group_by(target) %>%
+     summarise(count = n()) %>%
+     arrange(desc(count)) %>%
+     ungroup() %>%
+    ggplot(aes(x = reorder(target,count),y = count)) +
+    geom_bar(stat='identity',color="white", fill = "steelblue") +
+    geom_text(aes(x = target, y = 3.5, label = count),
+              hjust=0, vjust=.5, size = 4, color = 'black',
+              fontface = "bold.italic", family="Times") +
+  theme_fivethirtyeight()+
+    labs(x = 'Target',
+         y = 'No. of Shootings',
+         title = 'Number of Shootings based on known Target') +
+       coord_flip()
+ggplotly(p)
+
+# Percentage by incident area
+perc_target <- df_1%>%
+                filter(!is.na(target)) %>% 
+                group_by(target) %>%
+                summarise(count=n()) %>%
+                mutate(perc=round((count/sum(count))*100),"%") %>%
+                arrange(desc(count)) %>% 
+                head(10)
+                
+
+formattable(perc_target,align=c("l","r","r"),list(count=color_bar("mediumslateblue"),perc=color_tile("white","lightsalmon")))
+
+```
+
+From the above bar graph we can conclude that Shooter doesnot seems to kill specific person when commiting large number of crimes which can be evident from Los Angeles Concert Mass Shootings. When the target is locked like schools, religious place church, parties the intention seems to just commit henious crime. People seems to loose their life more when its at random places as shooter starts to shoot in each and every possible directions. 
+
+
+# Shootings : Incident Area 
+
+```{r}
+# sum(is.na(df_1$incident_area)) # We have 77 Missing data for the cause of Shootings.
+p <- df_1 %>%
+     filter(!is.na(incident_area)) %>%
+     group_by(incident_area) %>%
+     summarise(count = n()) %>%
+     arrange(desc(count)) %>%
+     ungroup() %>%
+    head(10) %>% # We will just pick top 10. To be precise we need more clean up in incident area.
+    ggplot(aes(x = reorder(incident_area,count),y = count)) +
+    geom_bar(stat='identity',color="white", fill = "steelblue") +
+    geom_text(aes(x = incident_area, y = 2, label = count),
+              hjust=0, vjust=.5, size = 4, color = 'black',
+              fontface = "bold.italic", family="Times") +
+  theme_fivethirtyeight()+
+    labs(x = 'Incident_Area',
+         y = 'No. of Shootings',
+         title = 'Number of Shootings based on known Target') +
+       coord_flip()
+ggplotly(p)
+
+# Percentage by incident area
+perc_incident <- df_1%>%
+                filter(!is.na(incident_area)) %>% 
+                group_by(incident_area) %>%
+                summarise(count=n()) %>%
+                mutate(perc=round((count/sum(count))*100),"%") %>%
+                arrange(desc(count)) %>% 
+                head(10)
+                
+
+formattable(perc_incident,align=c("l","r","r"),list(count=color_bar("mediumslateblue"),perc=color_tile("white","lightsalmon")))
+```
+
+# Shootings : Age
+
+```{r}
+age_hist <- df_1 %>% 
+                filter(age < 70) %>%  # Need to filter out the outliers otherwise graph will be skewed.
+                  ggplot(aes(x = age , na.rm = TRUE)) + 
+                  geom_histogram(col = "red", fill = "coral") + 
+                  labs(title = "Age Distibition of Mass Shooters")
+ggplotly(age_hist)
+
+p <- df_1 %>%
+     filter(!is.na(age)) %>%
+     filter(age < 70) %>% # We have some age like 1311 1516 1718 1922 1932  which doesnt make any sense.
+     ggplot(aes(y = age)) +
+     geom_boxplot(fill = "lightgreen")+
+    theme_fivethirtyeight()+
+    labs(x = 'Age',
+         y = 'No. of Shootings',
+         title = 'Range of Shooter Age') 
+ggplotly(p)
+
+# Percentage by age
+perc_age <- df_1%>%
+            filter(!is.na(age)) %>% 
+                group_by(age) %>%
+                summarise(count=n()) %>%
+                mutate(perc=round((count/sum(count))*100),"%") %>%
+                arrange(desc(count)) %>% 
+                head(10)
+formattable(perc_age,align=c("l","r","r"),list(count=color_bar("mediumslateblue"),perc=color_tile("white","lightsalmon")))
+```
+
+# Shootings : Year
+
+We have already seen in above analysis that **2015 and 2016** has seen an abnormal rise in shootings compare to last 50 years of data.          
+
+```{r}
+p <- df_1 %>%
+    filter(!is.na(year)) %>%
+    group_by(year) %>%
+    summarise(count = n()) %>%
+    arrange(desc(year)) %>%
+    ungroup() %>%
+    head(20) %>% # We will see the recent past 20 years of data only as crime has become more prominent.
+    ggplot(aes(x = year,y = count)) + # I will not reorder as it is better to see chronological 
+    geom_bar(stat="identity",color="white", fill = "steelblue") +
+    geom_text(aes(x= year, y= -1, label = paste0(count, sep = "")),
+              hjust =0, vjust =0.1, size = 3, color = 'black', fontface = "bold.italic", family="Times")+
+    labs(x = "Year", 
+       y = "No of Shootings", 
+       title = "No of Shootings/Year") +
+     coord_flip() +
+     theme_fivethirtyeight() 
+ggplotly(p)
+
+# Percentage by race
+perc_year <- df_1%>%
+                group_by(year) %>%
+                summarise(count=n()) %>%
+                mutate(perc=round((count/sum(count))*100),"%") %>%
+                arrange(desc(count)) %>% 
+                head(10)
+              
+formattable(perc_year,align=c("l","r","r"),list(count=color_bar("mediumslateblue"),perc=color_tile("white","lightsalmon")))
+```
+
+# Shootings : Month  
+
+**Feb, Mar and Apr** have witnessed the most shootings.  
+ 
+```{r}
+p <- df_1 %>%
+      filter(!is.na(month),!is.na(month_name)) %>%
+      group_by(month, month_name) %>%
+      summarise(count = n()) %>%
+      arrange(desc(count)) %>%
+      ungroup() %>%
+      head(10) %>%
+      ggplot(aes(x = reorder(month_name,count),y = count)) +
+      geom_bar(stat='identity',color="white", fill = "#FF6347") +
+      geom_text(aes(x= month_name, label = paste0(count, sep = "")),
+              hjust =0, vjust =0.1, size = 4, color = 'black', fontface = "bold.italic", family="Times")+
+      labs(x = 'Month',
+           y = 'No of Shootings',
+          title = 'No of Shootings/Month') +
+      coord_flip() +
+      theme_fivethirtyeight()
+ggplotly(p)
+
+# Percentage by race
+perc_month <- df_1%>%
+                group_by(month) %>%
+                summarise(count=n()) %>%
+                mutate(perc=round((count/sum(count))*100),"%") %>%
+                arrange(desc(count))
+                
+
+formattable(perc_month,align=c("l","r","r"),list(count=color_bar("mediumslateblue"),perc=color_tile("white","lightsalmon")))
+
+```
+
+The number of incidents have peaked during the month of feburary,March and april.
+The number of incidents seems to have peaked after 2010.
+Let us see which incident has lead to the maximum spike in the number of victims.
+
+```{r}
+p <- df_1 %>%
+      filter(!is.na(day)) %>%
+      group_by(day) %>%
+      summarise(count = n()) %>%
+      arrange(desc(count)) %>%
+      ungroup() %>%
+      mutate(day = reorder(day,count)) %>%
+      ggplot(aes(x = day,y = count)) +
+      geom_bar(stat='identity',color="white", fill = "#BDB76B") +
+      geom_text(aes(x= day, label = paste0(count, sep = "")),
+              hjust =0, vjust =0.1, size = 2, color = 'black', fontface = "bold.italic", family="Times")+
+      labs(x = 'Day', 
+           y = 'No of Shootings', 
+          title = 'No of Shootings and Day') +
+     coord_flip() +
+     theme_fivethirtyeight() 
+
+ggplotly(p)
+
+# Percentage by race
+perc_day <- df_1%>%
+                group_by(day) %>%
+                summarise(count=n()) %>%
+                mutate(perc=round((count/sum(count))*100),"%") %>%
+                arrange(desc(count)) %>% 
+                head(10) # Only look top 10.
+
+formattable(perc_day,align=c("l","r","r"),list(count=color_bar("mediumslateblue"),perc=color_tile("white","lightsalmon")))
+```
+
+# Shootings : Week
+```{r}
+p <- df_1 %>%
+      filter(!is.na(Weekday)) %>%
+      group_by(Weekday) %>%
+      summarise(count = n()) %>%
+      arrange(desc(count)) %>%
+      ungroup() %>%
+      ggplot(aes(x = reorder(Weekday,count),y = count)) +
+      geom_bar(stat='identity',color="white", fill = "lightgreen") +
+      geom_text(aes(x= Weekday, y = 1,label = count),
+              hjust =0, vjust =0.1, size = 4, color = 'black', fontface = "bold.italic", family="Times")+
+      labs(x = 'WeekDay', 
+           y = 'Number of Shootings', 
+          title = 'Number of Shootings/WeekDay') +
+     coord_flip() +
+     theme_fivethirtyeight()
+ggplotly(p)
+
+# Percentage by race
+perc_weekday <- df_1%>%
+                group_by(Weekday) %>%
+                summarise(count=n()) %>%
+                mutate(perc=round((count/sum(count))*100),'%') %>%
+                arrange(desc(count))
+
+formattable(perc_weekday,align=c("l","r","r"),list(count=color_bar("mediumslateblue"),perc=color_tile("white","lightsalmon")))
+```
+
+Seems like towards the end of the week there is more probability of happening Mass Shooting as more people are out of the house. Mostly Outgoers are towards the weekend.
+
+# Shootings : Gender 
+
+Although there is frequent speculation about the mental health concerns of those who carry out the devastating acts, there is less conversation around whether the gender of the perpetrator is a larger issue.If you look at the motivation that we know about it does seem to be that men handle their catastrophic loss and self esteem worse than women.women who own a gun are more likely to have purchased it in later life, and more likely to say protection is the only reason they have it, not just one of the reasons for it.Women tend to see violence as a last resort, as a self-defence mechanism. You use violence if you have to, if there's no other way out.
+
+- "Men tend to use violence as an offensive weapon, to show them who's boss."
+Males are engaged far more shootings than females as I have stated previosuly. We will show through the barplot.
+
+```{r}
+p <-df_1 %>%
+       filter(!is.na(gender)) %>%
+        group_by(gender) %>%
+        summarise(count = n()) %>%
+        arrange(desc(count)) %>%
+        ungroup() %>%
+        ggplot(aes(x = reorder(gender,count),y = count)) +
+        geom_bar(stat='identity',color="white", fill = "#D8BFD8") +
+        geom_text(aes(x = gender, y = 10, label = count),
+              hjust=0, vjust=.5, size = 4, color = 'black',
+              fontface = 'bold') +
+       labs(x = 'Gender', 
+            y = 'No of Shootings', 
+            title = 'No of Shootings and Gender') +
+       coord_flip() +
+       theme_fivethirtyeight() 
+ggplotly(p)
+
+# Percentage by Gender
+perc_gender <- df_1%>%
+              group_by(gender) %>%
+              summarise(count=n()) %>%
+              mutate(perc=round((count/sum(count))*100),"%") %>%
+              arrange(desc(count))
+
+formattable(perc_gender,align=c("l","r","r"),list(count=color_bar("mediumslateblue"),perc=color_tile("white","lightsalmon")))
+
+```
+
+# Shootings : Open/Close Location
+
+Shootings happen more in Closed locations other than Open locations
+
+```{r}
+p <-df_1 %>%
+    filter(!is.na(open_close_location)) %>%
+    group_by(open_close_location) %>%
+    summarise(count = n()) %>%
+    arrange(desc(count)) %>%
+    ungroup() %>%
+  mutate(open_close_location = reorder(open_close_location,count)) %>% 
+  ggplot(aes(x =open_close_location,y = count)) +
+  geom_bar(stat = "identity",
+           aes(fill = reorder(open_close_location,count)),
+           color = "black")+ # outline black
+  geom_text(aes(label = count, y =8), 
+            hjust = -0.1,
+            position = position_dodge( width = 0.6))+ # use hjust as flip coord
+  coord_flip() +
+  guides(fill = FALSE)+ # remove the legends.
+  scale_fill_manual(values = c("lightgreen","skyblue", "dimgray"))+ 
+  theme_fivethirtyeight()+
+  labs(#x = 'open_close_location', 
+            #y = 'No. of Shootings', 
+            title = 'No of Shootings/open_close_location') 
+ggplotly(p)
+
+# Percentage by race
+perc_open_close_loc <- df_1%>%
+              group_by(open_close_location) %>%
+              summarise(count=n()) %>%
+              mutate(perc=round((count/sum(count))*100),"%") %>%
+              arrange(desc(count))
+formattable(perc_open_close_loc,align=c("l","r","r"),list(count=color_bar("mediumslateblue"),perc=color_tile("white","lightsalmon")))
+```
+
+# Shooting : Fatalities
+
+`Which mass Shoting has  maximum fatalities?`
+
+```{r,warning= FALSE}
+p <-df_1%>%
+      select(title,location,fatalities) %>%
+      arrange(desc(fatalities)) %>% 
+      head(20) %>% 
+      arrange(reorder(fatalities, title)) %>% 
+      ggplot(aes(factor(title,levels=title),fatalities,fill=title))+
+      geom_bar(stat="identity")+
+      theme_bw()+
+      coord_flip()+
+      labs(x="Event",
+           y="Fatalities",title="Event | Fatalities")+
+      theme(legend.position="none")+
+      scale_y_continuous(limits=c(0,60),breaks=seq(0,60,5))
+
+ggplotly(p)
+
+# ALT WAY 
+df_1 %>%
+        select(title,location,total_victims) %>% 
+        arrange(desc(total_victims)) %>% 
+        head(20)%>%
+        ggplot(aes(factor(title,level=title),total_victims,fill=title))+
+        geom_bar(stat="identity")+
+        theme_fivethirtyeight()+
+        labs(x="Event",
+             y="Total Victims",
+            title="Maximum victims for an Event") +
+  theme(legend.position="none")+
+  geom_label_repel(aes(label=total_victims,fill=factor(location)),color="white",size=1.9)+
+  coord_flip()
+```
+
+
+`Which month,year has seen more incidents ?`
+
+```{r, fig.width=7, fig.height=5}
+
+p <- df_1 %>%
+  select(month) %>% 
+  group_by(month) %>% 
+  summarise(count=n()) %>% 
+   ggplot(aes(month,count,fill=month))+
+   geom_bar(stat="identity", color = rainbow(12)) +
+   theme_gdocs()+
+   theme(legend.position="none")+
+   labs(x="Month",y="Aggregate no. of incidents",title="# of Incidents by Month")
+
+q <- df_1 %>%
+      select(year) %>% 
+      group_by(year) %>% 
+      summarise(count=n()) %>% 
+      arrange(desc(count)) %>% 
+  ggplot(aes(year,count,group=1, fill=year))+
+  geom_line() +
+      theme_classic()+
+      theme(legend.position="none",
+            axis.text.x=element_text(angle=90,hjust=0.5))+
+  labs(x="Year",
+       y="Aggregate number of incidents",
+       title="Number of Incidents by Year")
+
+require(cowplot)
+theme_set(theme_cowplot(font_size=10)) # reduce default font size
+plot_grid(p, q, labels = c('A', 'B'))
+```
+
+# Correlation Plot
+```{r, message= FALSE, warning= FALSE, fig.width=7, fig.height=8}
+plot_correlation(na.omit(df_1), maxcat = 5L)
+```
+
+
+# Heat Map {.tabset .tabset-fade .tabset-pills}
+```{r, warning = FALSE, message= FALSE}
+df_1 %>% 
+  plot_ly(x = ~ month, y = ~ year, z = ~total_victims, 
+          type = "heatmap", mode = 'makers', colors = colorRamp(c("lightsalmon","red")),
+          hoverinfo = 'text',
+          text = ~paste(year, "/",month_name,
+                        ' ', total_victims, 'victims', 
+                        '"', title, '"'))
+```
+
+The only thing you will recognise is that the Las vegas shooting that happened in october in 2017 stands out extraordinary. Because of that, we can not tell anything alse. </br>
+So, this lead me that, how about ploting every accidents apart from this shooting accident?
+
+## Calendar Plot 2:
+
+**Removing the Las Vegas Outlier.**
+
+```{r, message= FALSE, warning= FALSE}
+df_1 %>% 
+  filter(title != "Las Vegas Strip mass shooting") %>%  
+  plot_ly(x = ~ month, y = ~ year, z = ~ total_victims, 
+          type = "heatmap", mode = 'makers', colors = colorRamp(c("lightsalmon","red")),
+          hoverinfo = 'text',
+          text = ~paste(year, "/",month,
+                        ' ', total_victims, 'victims', 
+                        '"', title, '"'))
+```
+
+## Las Vegas Strip 
+
+**Datatable of Histrocal Shooting Accidents**
+
+```{r}
+df_1%>% 
+  filter(title != "Las Vegas Strip mass shooting") %>%
+  arrange(desc(total_victims)) %>% 
+  select(summary, title:date, -city, age) %>% 
+  head(5) %>% 
+  datatable(options = 
+              list(pageLength = 5,
+                   lengthMenu = c(1,5)))
+```
+
+**You can search in search box**
+
+# FUTURE {.tabset .tabset-fade .tabset-pills}
+**Future 2019. How has first weeks of 2019 has gone so far?**
+
+```{r, warning = FALSE, message= FALSE}
+# Crimes related to Gun in the year 2019. There is not Yet mass shooting but does minor crime hint us if there is big crime that will take place in future?
+
+library(rvest)
+base_url <- "http://www.gunviolencearchive.org/reports/mass-shooting?page=" # Pick one of these sites 
+pages <- 0:1 # From first page
+
+# Lets write function
+web_data_2019 <-
+  map_df(pages, function(i) {
+    cat(".")
+    path <- paste0(base_url, i)
+    page <- read_html(path, encoding = "utf-8")
+    table <- html_table(page, fill = TRUE)
+    data.frame(table, stringsAsFactors=FALSE)
+  })
+
+# Table in website is labeled as incident date, state, county/city, address, killed, injured, operations. We will name accoridng to that
+names(web_data_2019 ) <- c("date", "state", "city", "address", "killed", "injured", "details")
+web_data_2019 %>% 
+datatable(options = 
+              list(pageLength = 5,
+                   lengthMenu = c(1,5)))
+```
+
+
+```{r, warning= FALSE}
+g <- list(scope = 'usa',
+        projection = list(type = 'albers usa'),
+        showland = TRUE,
+        landcolor = toRGB("powderblue"),
+        subunitwidth = 1,
+        countrywidth = 1,
+        subunitcolor = toRGB("white"),
+        countrycolor = toRGB("white"),
+        showlakes = TRUE,
+        lakecolor = toRGB("lightsalmon"))
+m <- list(l = 0,r = 5, b = 5,t = 30,pad = 2)
+
+mass_shoot <- df_1 %>% filter(gender == "Male")
+mental_health <- df_1  %>% filter(mental_health_issues == "Yes")
+p <- plot_geo(mass_shoot, sizes = c(1,250)) %>%
+        add_markers(
+                x = ~longitude, y = ~latitude, color = ~mass_shoot$fatalities, size = ~mass_shoot$fatalities, colors=c("indianred", "#DC143C"), hoverinfo = "text",
+                text = ~paste("<b>", year,";", "</b>", "<br>", "Location:", location,";", "Incident: " , incident_area, ";", "Gender: ", gender, ";", "<br>" , "<b>", "Total victims: " , total_victims, ";", "</b>", "Fatalities: " , fatalities, ";", "Injured: " , injured),
+                symbol = I("circle")) %>%
+        colorbar(title = str_to_title(mass_shoot$fatalities)) %>% 
+        plotly::layout(title = 'US Mass Shootings 1982 - 2018', 
+               geo = g, margin = m, mapbox = list(
+                       zoom = 100))
+p
+```
+
+
+Conclusion:
+If you go with the raw numbers.According to the Gun Violence Archive, which compiles data from shooting incidents, a "mass shooting" is any incident in which a gunman shoots or kills four or more people in the same general time and location
+By that definition, according to the Gun Violence Archive, we have seen 307 mass shootings from January 1 to Decemeber. The five deadliest shootings in the US have occurred in roughly the past 10 years.From 1966 to 2012, nearly a third of the world's mass shootings took place in the United States. A 2016 study looked at 292 incidents in which four or more people were killed. It found 90 of them occurred in America. Put another way: While the United States has about 5% of the world's population, it had 31% of all public mass shootings.People have a greater chance of dying in mass shootings if they're at school or place of business
+
+Most shooters take their own lives, or are killed.About 70% of active shooter incidents end with the shooter or shooters' deaths, according to the FBI. Unlike a homicide or mass killing, the "active" aspect implies that both law enforcement and citizens have the potential to affect the outcome of the event.
+
+**That averages to almost 7 mass shootings a week.**
+
+With the help of these datasets I tried to answer some basic questions. If we had multiple data source may be we could have done little better than these. Apart from implementing what I learnt from others I tried to present same with better vizualizations. Most of the analysis executive summary is presented in the beginning.
+
+**Thanks for reading.If you have any comments,suggestions I encourage you to write.Your comments are valuable for my future  ways of analysis.**
+
+# Reference:
+
+Those are the wikipedia links of each shooting accident.</br>
+1. [Orlando nightclub massacre](https://en.wikipedia.org/wiki/Orlando_nightclub_shooting)
+2. [Aurora theater shooting](https://en.wikipedia.org/wiki/2012_Aurora_shooting)
+3. [Virginia Tech massacre](https://en.wikipedia.org/wiki/Virginia_Tech_shooting)
+4. [University of Texas at Austin](https://en.wikipedia.org/wiki/University_of_Texas_tower_shooting)
+5. [Texas church mass shooting](https://en.wikipedia.org/wiki/Sutherland_Springs_church_shooting)
+
+Reference for compiling these project.
+
+1. [Kaggle datasets](www.kaggle.com)
+1. [CNN](www.cnn.com)
+2. [Washington Post](https://www.washingtonpost.com/)
+4. Some other inspiring experienced Kagglers.
+
+
+**Thank you for Reading the Post.Hope you enjoyed reading as much as "fun" I had making it.**
+
+
+🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏
+
+
+
+🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏🙏
+
