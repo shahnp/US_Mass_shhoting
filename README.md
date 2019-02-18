@@ -1,4 +1,4 @@
-# US_Mass_shhoting[https://rpubs.com/shah_np/457270]
+# US_Mass_shooting[https://rpubs.com/shah_np/457270]
 
 **1 Introduction:**
 A recent study published by the Harvard Injury Control Research Center shows that the frequency of mass shooting has increased over time. Some of the deadliest mass shootings in the U.S. happen last year February 2018 including the Parkland high school (https://en.wikipedia.org/wiki/Stoneman_Douglas_High_School_shooting) shooting and the massacre at the Tree of Life synagogue in Pittsburgh (https://en.wikipedia.org/wiki/Pittsburgh_synagogue_shooting) that occured in October 27, 2018 which prompted widespread national horror. But the death toll is not irrelevant to
